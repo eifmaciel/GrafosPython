@@ -4,85 +4,8 @@
 
 from collections import defaultdict
 
-#This class represents an undirected graph 
+#This class represents an undirected graph
 #using adjacency list representation
-
-# class Graph:
-
-#     def __init__(self,vertices, graph):
-#         self.V= vertices #No. of vertices
-#         self.graph = defaultdict(list) # default dictionary to store graph
-#         self.Time = 0
-
-#     '''A recursive function that find articulation points 
-#     using DFS traversal
-#     u --> The vertex to be visited next
-#     visited[] --> keeps tract of visited vertices
-#     disc[] --> Stores discovery times of visited vertices
-#     parent[] --> Stores parent vertices in DFS tree
-#     ap[] --> Store articulation points'''
-#     def APUtil(self,u, visited, ap, parent, low, disc):
-
-#         #Count of children in current node 
-#         children =0
-
-#         # Mark the current node as visited and print it
-#         visited[u]= True
-
-#         # Initialize discovery time and low value
-#         disc[u] = self.Time
-#         low[u] = self.Time
-#         self.Time += 1
-
-#         #Recur for all the vertices adjacent to this vertex
-#         for v in self.graph[u]:
-#             # If v is not visited yet, then make it a child of u
-#             # in DFS tree and recur for it
-#             if visited[v] == False :
-#                 parent[v] = u
-#                 children += 1
-#                 self.APUtil(v, visited, ap, parent, low, disc)
-
-#                 # Check if the subtree rooted with v has a connection to
-#                 # one of the ancestors of u
-#                 low[u] = min(low[u], low[v])
-
-#                 # u is an articulation point in following cases
-#                 # (1) u is root of DFS tree and has two or more chilren.
-#                 if parent[u] == -1 and children > 1:
-#                     ap[u] = True
-
-#                 #(2) If u is not root and low value of one of its child is more
-#                 # than discovery value of u.
-#                 if parent[u] != -1 and low[v] >= disc[u]:
-#                     ap[u] = True   
-                     
-#                 # Update low value of u for parent function calls   
-#             elif v != parent[u]: 
-#                 low[u] = min(low[u], disc[v])
-
-#     #The function to do DFS traversal. It uses recursive APUtil()
-#     def AP(self):
-  
-#         # Mark all the vertices as not visited 
-#         # and Initialize parent and visited, 
-#         # and ap(articulation point) arrays
-#         visited = [False] * (self.V)
-#         disc = [float("Inf")] * (self.V)
-#         low = [float("Inf")] * (self.V)
-#         parent = [-1] * (self.V)
-#         ap = [False] * (self.V) #To store articulation points
- 
-#         # Call the recursive helper function
-#         # to find articulation points
-#         # in DFS tree rooted with vertex 'i'
-#         for i in range(self.V):
-#             if visited[i] == False:
-#                 print i
-#                 self.APUtil(i, visited, ap, parent, low, disc)
- 
-#         for index, value in enumerate (ap):
-#             if value == True: print index,
 
 tam = 4
 visited = [False] * (tam)
@@ -91,12 +14,83 @@ low = [float("Inf")] * (tam)
 parent = [-1] * (tam)
 ap = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]] #To store articulation points
 
-    
+int dfs(int** graph, int node, int goal, int* path, size_t* path_size) {
+  size_t i, size;
+  int v;
+  // se a busca atingiu o vértice de destino, retorna este
+  if(node == goal) {
+    return goal;
 
+  // caso contrário, realiza a busca nos vértices adjacentes
+  } else {
+
+    // [
+    // armazena a quantidade de vértices conectados ao vértice atual
+    size = graph[node][0];
+    // elimina o vértice atual da busca para que este
+    // não volte a ser buscado novamente - elimina recursão infinita
+    graph[node][0] = 0;
+    // ]
+
+    // para cada vértice v adjacente ->
+    for(i = 1; i <= size; i++) {
+      // se a busca no vértice adjacente atingiu o destino,
+      // insere o vértice atual no caminho percorrido
+      // e retorna o vértice de destino para que os níveis superiores
+      // da recursão saibam que a busca foi concluída
+      if(dfs(graph, graph[node][i], goal, path, path_size) == goal) {
+
+        // path[*path_size] = node;
+        // *path_size = *path_size + 1;
+        // ^
+        path[(*path_size)++] = node;
+
+        return goal;
+      }
+    }
+  }
+}
+
+def dfs(graph, node, goal, path, path_size):s
+    i = 0, size= 0
+    v = 0
+    # se a busca atingiu o vértice de destino, retorna este
+    if(node == goal):
+        return goal
+
+    # caso contrário, realiza a busca nos vértices adjacentes
+    else:
+
+        #  [
+        # armazena a quantidade de vértices conectados ao vértice atual
+        # size = graph[node][0];
+        #  elimina o vértice atual da busca para que este
+        #  não volte a ser buscado novamente - elimina recursão infinita
+        # graph[node][0] = 0;
+        #  ]
+
+        # para cada vértice v adjacente ->
+        for i in range(size):
+            #  se a busca no vértice adjacente atingiu o destino,
+            #  insere o vértice atual no caminho percorrido
+            #  e retorna o vértice de destino para que os níveis superiores
+            #  da recursão saibam que a busca foi concluída
+            if(dfs(graph, graph[node][i], goal, path, path_size) == goal) {
+
+            // path[*path_size] = node;
+            // *path_size = *path_size + 1;
+            // ^
+            path[(*path_size)++] = node;
+
+            return goal;
+            }
+        }
+  }
+}
 
 
 def busca_DFS(graph, u):
-  '''A recursive function that find articulation points 
+  '''A recursive function that find articulation points
   using DFS traversal
   u --> The vertex to be visited next
   visited[] --> keeps tract of visited vertices
@@ -104,7 +98,7 @@ def busca_DFS(graph, u):
   parent[] --> Stores parent vertices in DFS tree
   ap[] --> Store articulation points'''
 
-  #Count of children in current node 
+  #Count of children in current node
   children =0
 
   # Mark the current node as visited and print it
@@ -133,19 +127,19 @@ def busca_DFS(graph, u):
           # than discovery value of u.
           if parent[u] != -1 and low[v] >= disc[u]:
               ap[u][v] = 1
-                
-          # Update low value of u for parent function calls 
-      elif v != parent[u]: 
+
+          # Update low value of u for parent function calls
+      elif v != parent[u]:
           low[u] = min(low[u], disc[v])
 
 
 #The function to do DFS traversal. It uses recursive APUtil()
 def ArticulationPointer(graph):
 
-  # Mark all the vertices as not visited 
-  # and Initialize parent and visited, 
+  # Mark all the vertices as not visited
+  # and Initialize parent and visited,
   # and ap(articulation point) arrays
- 
+
   # Call the recursive helper function
   # to find articulation points
   # in DFS tree rooted with vertex 'i'
