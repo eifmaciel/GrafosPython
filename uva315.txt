@@ -1,5 +1,10 @@
-A Telephone Line Company (TLC) está estabelecendo uma nova rede de cabo por telefone. Eles estão se conectando vários lugares numerados por números inteiros de 1 a N. Não há dois lugares com o mesmo número. As linhas são bidirecionais e sempre conectam dois lugares e em cada lugar as linhas terminam em um telefone troca. Existe uma troca telefônica em cada lugar. De cada lugar, é possível alcançar
-através de linhas de qualquer outro lugar, no entanto, não precisa ser uma conexão direta, pode passar por vários trocas. De vez em quando, a fonte de alimentação falha em um local e, em seguida, a troca não funciona.
+A Telephone Line Company (TLC) está estabelecendo uma nova rede de cabo por telefone.
+Eles estão se conectando vários lugares numerados por números inteiros de 1 a N.
+Não há dois lugares com o mesmo número. As linhas são bidirecionais e sempre conectam dois lugares e em cada lugar as linhas terminam em um telefone troca.
+Existe uma troca telefônica em cada lugar.
+De cada lugar, é possível alcançar através de linhas de qualquer outro lugar, no entanto, não precisa ser uma conexão direta, pode passar por vários trocas.
+
+De vez em quando, a fonte de alimentação falha em um local e, em seguida, a troca não funciona.
 Os funcionários da TLC perceberam que, nesse caso, pode acontecer que além do fato de que o lugar
 com a falha é inacessível, isso também pode causar que alguns outros lugares não possam se conectar.
 Nesse caso, diremos que o lugar (onde ocorreu a falha) é crítico. Agora, os funcionários estão tentando
@@ -17,3 +22,16 @@ O bloco termina com uma linha contendo apenas '0'. O último bloco tem apenas um
 Saída
 A saída contém para cada bloco, exceto o último no arquivo de entrada, uma linha contendo o número de
 lugares críticos.
+
+Sample Input
+5
+5  1  2  3  4
+0
+6
+2  1  3
+5  4  6  2
+0
+0
+Sample Output
+1
+2
