@@ -10,7 +10,7 @@ from collections import defaultdict
 # Mark all the vertices as not visited
 # and Initialize parent and visited,
 # and ap(articulation point) arrays
-tam = 7
+tam = 6
 visited = [False] * (tam)
 disc = [float("Inf")] * (tam)
 low = [float("Inf")] * (tam)
@@ -40,7 +40,6 @@ def APUtil(graph, u, visited, ap, parent, low, disc):
     time += 1
     # import ipdb; ipdb.set_trace()
     #Recur for all the vertices adjacent to this vertex
-    print graph[u]
     for v in graph[u]:
         # If v is not visited yet, then make it a child of u
         # in DFS tree and recur for it
@@ -55,16 +54,12 @@ def APUtil(graph, u, visited, ap, parent, low, disc):
 
             # u is an articulation point in following cases
             # (1) u is root of DFS tree and has two or more chilren.
-            print children
-            print low
             if parent[u] == -1 and children > 1:
-                print ap
                 ap[u] = True
 
             #(2) If u is not root and low value of one of its child is more
             # than discovery value of u.
             if parent[u] != -1 and low[v] >= disc[u]:
-                print ap
                 ap[u] = True
 
             # Update low value of u for parent function calls
@@ -84,14 +79,39 @@ def AP(graph):
 
     for i, value in enumerate(ap):
         if value:
-            print i
+            print(i)
+
+
+# def transforma_grafo(lista):
+#     graph = {}
+#     for i in lista:
+#         graph[i]
+
 
 def main():
+    import sys
+    sys.stdin = open('arquivo.txt')
+    graph = {}
+    global tam
+    while True:
+        n = int(input())
+        if not n:
+            break
+        for line in iter(raw_input, '0'):
+            a = map(int, line.split())
+            k = a[0]
+            print a
+            for v in a[1:]:
+                print graph
+                graph[k] = [v]
+                k = v
+    print graph
+        
 
-    #graph = {0:[], 1: [5, 2], 2: [1,3], 3: [2,4], 4: [3], 5: [1]}
-    graph = {0:[], 1: [2, 3], 2: [1,6], 3: [1], 4: [5,6], 5: [4], 6:[4,2]}
+   # graph = {0:[], 1: [5, 2], 2: [1,3], 3: [2,4], 4: [3], 5: [1]}
+    #graph = {0:[], 1: [2, 3], 2: [1,6], 3: [1], 4: [5,6], 5: [4], 6:[4,2]}
 
-    AP(graph)
+    # AP(graph)
 
 if __name__ == "__main__":
     main()
