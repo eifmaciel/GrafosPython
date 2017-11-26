@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
 
 
-link =[
-[0, 0, 0, 0, 0, 0, 0], 
-[0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0], 
-[0, 0, 0, 0, 0, 0, 0], 
-[0, 0, 0, 0, 0, 0, 0], 
-[0, 0, 0, 0, 0, 0, 0], 
-[0, 0, 0, 0, 0, 0, 0], 
-]
+link =[]
 
-n = 7
-depth = [0,0,0,0,0,0, 0]
-low = [0,0,0,0,0, 0, 0]
-used = [0,0,0,0,0,0, 0]
+n = 0
+depth = [0]
+low = [0]
+used = [0]
 cut = 0
 
 def DFS(node, d, parent):
@@ -23,7 +15,7 @@ def DFS(node, d, parent):
     son = 0
     tmp = 0
     flag = 0
-    global used, cut, link, n
+    global used, cut, link, n, depth, low
     # import ipdb; ipdb.set_trace()
     
     depth[node] = d
@@ -60,7 +52,7 @@ def main():
     y = 0
     c = 0
     global used, cut, link, n, depth, low
-        
+    num = 0
 
     import sys
     sys.stdin = open('arquivo.txt')
@@ -74,6 +66,11 @@ def main():
         used = [0] * num
         cut = 0
         link =[]
+        for y in range(num):
+            linha = []
+            for x in range(num):
+                linha.append(0)
+            link.append(linha)
         for x in range(n):
             line = raw_input()
             if line == '0':
@@ -82,16 +79,15 @@ def main():
             k = a[0]
             
             for v in a[1:]:
-                link.append([0]*num)
                 link[k][v] = 1
                 link[v][k] = 1
-                print link
+        print link
 
         used[1] = 1
         cut = 0
         DFS(1, 1, 0)
         print cut
-    # return 0
+    return 0
 
 
 if __name__ == "__main__":
