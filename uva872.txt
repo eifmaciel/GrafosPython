@@ -1,0 +1,48 @@
+O pedido é um conceito importante em matemática e informática. Por exemplo, Zorns Lemma
+afirma: um conjunto parcialmente ordenado em que cada cadeia possui um limite superior contém um elemento máximo.
+A ordem também é importante no raciocínio sobre a semântica do ponto fixo dos programas.
+Este problema não envolve Zorns Lemma nem semântica do ponto fixo, mas envolve a ordem.
+Dada uma lista de restrições variáveis ​​do formulário A <B, você deve escrever um programa que imprima tudo
+ordens das variáveis ​​que são consistentes com as restrições. Por exemplo, tendo em conta as restrições
+A <B e A <C existem duas ordens das variáveis ​​A, B e C que são consistentes com estas
+restrições: ABC e ACB.
+
+
+Entrada
+A entrada começa com um único inteiro positivo em uma linha, indicando o número
+dos casos seguintes, cada um deles como descrito abaixo. Esta linha é seguida por um espaço em branco
+linha, e há também uma linha em branco entre duas entradas consecutivas.
+A entrada consiste em duas linhas: uma lista de variáveis ​​em uma linha seguida de uma lista de restrições da
+forme A <B na próxima linha. Variáveis ​​e restrições são separadas por espaços individuais.
+Todas as variáveis ​​são de caracteres únicos, letras maiúsculas. Haverá pelo menos duas variáveis, e não
+mais de 20 variáveis. Haverá pelo menos uma restrição e não mais do que 50 restrições. Lá
+não serão mais do que 300 pedidos consistentes com os constrangimentos de uma especificação.
+
+Saída
+Para cada caso de teste, a saída deve seguir a descrição abaixo. As saídas de dois
+Os casos consecutivos serão separados por uma linha em branco.
+Todas as ordens consistentes com as restrições devem ser impressas. Os pedidos são impressos em alfabética
+ordem, uma por linha. Os caracteres em uma linha são separados por um espaço. Se não for possível fazer pedidos, a saída
+é uma única linha com a palavra "NÃO".
+
+Sample Input
+1
+A B F G
+A<B B<F
+Sample Output
+A
+A
+A
+G
+B
+B
+G
+A
+F
+G
+B
+B
+G
+F
+F
+F
