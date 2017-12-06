@@ -4,7 +4,7 @@ posnum=[0,0,0, 0,0,0]
 visit=[0,0,0, 0,0,0]
 N = 6
 nump = 0
-             
+
 def DFS(v, G):
     global visit, nump, posnum, N
     visit[v]=1
@@ -23,13 +23,13 @@ def DFS2(v,GL):
 def main():
     import sys
     global visit, nump, posnum, N
-    # nomes = ["McBride, John", "Smith, Peter", "Brown, Anna"]
-    # graph = [[0,1,1,1,0,0],
-    #          [0,0,0,0,1,1],
-    #          [0,0,0,0,0,0],
-    #          [0,0,0,0,0,0],
-    #          [0,0,0,0,0,1],
-    #          [0,0,0,0,0,0]]
+    nomes = ["McBride, John", "Smith, Peter", "Brown, Anna"]
+    graph = [[0,1,1,1,0,0],
+             [0,0,0,0,1,1],
+             [0,0,0,0,0,0],
+             [0,0,0,0,0,0],
+             [0,0,0,0,0,1],
+             [0,0,0,0,0,0]]
     GL = [[0,0,0, 0,0,0],[0,0,0, 0,0,0],[0,0,0, 0,0,0], [0,0,0, 0,0,0],[0,0,0,0,0,0],[0,0,0, 0,0,0]]
 
 
@@ -63,7 +63,7 @@ def main():
         for i in range(N):
             if (posnum[i]>maior and visit[i]==1):
                 maior=posnum[i]
-                pm=i   
+                pm=i
         if (maior==-1):
             break
         DFS2(pm, GL)
