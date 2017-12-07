@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 
-posnum=[0,0,0, 0,0,0]
-visit=[0,0,0, 0,0,0]
-N = 6
+posnum=[]
+visit=[]
+N = 0
 nump = 0
-
+nomes = []
+GL = []
+graph = []
+soma = 0
+       
+        
 def DFS(v, G):
     global visit, nump, posnum, N
     visit[v]=1
@@ -20,57 +25,64 @@ def DFS2(v,GL):
        if (GL[v][i] and visit[i]==0):
           DFS2(i, GL)
 
+def inicializa(n):
+    global visit, posnum,GL, graph
+    for i in range(n):
+        posnum.append(0)
+        visit.append(0)
+        GL.append([])
+        graph.append([])
+
+        for j in range(n):
+            GL[i].append(0)
+            graph[i].append(0)
+
 def main():
     import sys
-    global visit, nump, posnum, N
-    nomes = ["McBride, John", "Smith, Peter", "Brown, Anna"]
-    graph = [[0,1,1,1,0,0],
-             [0,0,0,0,1,1],
-             [0,0,0,0,0,0],
-             [0,0,0,0,0,0],
-             [0,0,0,0,0,1],
-             [0,0,0,0,0,0]]
-    GL = [[0,0,0, 0,0,0],[0,0,0, 0,0,0],[0,0,0, 0,0,0], [0,0,0, 0,0,0],[0,0,0,0,0,0],[0,0,0, 0,0,0]]
+    global visit, nump, posnum, N, nomes, GL, graph, soma
 
-
-    sys.stdin = open('arq.txt')
-    while True:
-        primeira = raw_input()
-
-        if primeira  == '0 0':
-            break
-        else:
-            linha = primeira.split()
-            p = int(linha[0])
-            t = int(linha[1])
-            for i in range(p):
-                a = raw_input()
-                nomes.append(a)
-
-                for v in a[1:]:
-                    print graph
-                    graph[k] = [v]
-                    k = v
-
-
-    DFS(0, graph)
-    for i in range(N):
-        for j in range(N):
-            GL[i][j]=graph[j][i]
-    while (1):
-        maior=-1
-        pm=0
+    valor = input()
+   
+    while valor != '0 0':
+        var = valor.split(' ')
+        N = int(var[0])
+        p = int(var[1])
+        inicializa(N)
         for i in range(N):
-            if (posnum[i]>maior and visit[i]==1):
-                maior=posnum[i]
-                pm=i
-        if (maior==-1):
-            break
-        DFS2(pm, GL)
+	        a = input()
+	        nomes.append(a)
+        pos1 = None
+        pos2 = None
+        for j in range(p):
+            b = input()
+            c = input()
+            pos1 = nomes.index(b)
+            pos2 = nomes.index(c)
+            graph[pos1][pos2] = 1
+        print(graph)
+        DFS(0, graph)
         for i in range(N):
-            if (visit[i]==2):
-                print i
-                visit[i]=3
+            for j in range(N):
+                GL[i][j]=graph[j][i]
+        while (1):
+            maior=-1
+            pm=0
+            for i in range(N):
+                if (posnum[i]>maior and visit[i]==1):
+                    maior=posnum[i]
+                    pm=i   
+            if (maior==-1):
+                break
+            DFS2(pm, GL)
+            for i in range(N):
+                if (visit[i]==2):
+                    soma += i
+                    visit[i]=3
+        print(soma)
+        valor = input()
+        if valor == '0 0':
+            break
+  
     return 0
 
 if __name__ == "__main__":

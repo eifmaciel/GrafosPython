@@ -15,41 +15,48 @@ G = []
 resultado = []
 lista= []
 lin = []
-
+N= 0
 def printResult():
 	global resultado
 	if resultado:
 		for i in resultado:
-			print(lin[i], end="")
-		print("\n")
+			print lin[i]
+			# print  lin[i], end="")
+		print "\n"
 	else:
-		print('NO')
+		print 'NO'
 
-def dfs(Idx, n):
-	if Idx == n:
-		print("aqui");
+def dfs(Idx):
+	global N, lista, lin, G, visited
+	# import ipdb; ipdb.set_trace()
+	print  'inicio', Idx, N
+	if Idx == N:
+		print  "aqui"
 		has = 1
-		print(lista[0])
+		print  lista[0]
 		i = 1
-		for i in range(n):
-			resultado.append(i)
-		printResult()
+		for i in range(N):
+			print  lista[i]
+		# printResult()
 		return
-	i = 0
-	j = 0
-	for i in range(n):
+	i=0
+	j=0
+	for i in range(N):
 		if not visited[i]:
 			for j in range(Idx):
-				print(lin[i], lista[j])
-				# if(G[lin[i]-65][lista[j]-65]):
-					# break
+				pos1 = lin.index(lin[i])
+				pos2 = lin.index(lista[j])
+				if G[pos1][pos2]:
+					pass
 			if(j == Idx):
+				print  j, Idx, 'aqui'
 				lista[Idx] = lin[i]
 				visited[i] = 1
-				dfs(Idx+1, n)
+				print  Idx+1
+				dfs(Idx+1)
 				visited[i] = 0
 
-def OrdemTopoAlt(G, graph, N, index):
+def OrdemTopoAlt(G, graph, N):
 	global resultado
 	L = []
 	for i in range(N):
@@ -87,28 +94,36 @@ def inicialize(N):
 	# print G
 
 def main():
-	global G, resultado, lista, lin
+	global G, resultado, lista, lin, N
 	import sys
+	grau = []
 	line =True
 	# sys.stdin = open('arq2.txt')
 	# import ipdb; ipdb.set_trace()
-	N = input()
-	white = input()
+	t = input()
+	white = raw_input()
 	# while line:
-	line = input()
+	line = raw_input()
 	lin = line.split(' ')
 	tam = len(lin)
-	line2 = input()
+	line2 = raw_input()
 	pega = line2.split(' ')
 	inicialize(tam)
+	for i in range(tam):
+		grau.append(0)
+	print grau
 	for i in pega:
 		dado = i.split('<')
 		pos1 = lin.index(dado[0])
 		pos2 = lin.index(dado[1])
 		G[pos1][pos2] = 1
+		grau[pos2] += 1
+	N= tam
 
-	dfs(0, tam)
-	# OrdemTopoAlt(lista, G, tam, index)
+
+	# dfs(0)
+	OrdemTopoAlt(lista, G, tam)
+	printResult()
 
 
 

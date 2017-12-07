@@ -23,8 +23,6 @@ void dfs(int Idx) {
     for(i = 0; i < n; i++) {
         if(!used[i]) {
             for(j = 0; j < Idx; j++) {
-                printf("%d\n", s[i]);
-                printf("%d\n", ans[j]);
                 if(g[s[i]-'A'][ans[j]-'A'])
                     break;
             }
