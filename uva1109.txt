@@ -4,7 +4,8 @@ funcionários nos grupos afetados e detectaram a raiz do problema: confiar (ou, 
 falta dela). Alguns funcionários não confiam no resto do grupo, e isso está diminuindo sua motivação
 e felicidade. O departamento de pessoal quer resolver esse problema e decidiu se reorganizar
 os grupos para que estejam estáveis, ou seja, eles são formados por pessoas que confiam umas nas outras
-Eles perguntaram aos funcionários e eles conhecem as pessoas que cada funcionário confia diretamente. Além disso, se empregado u m trusts do empregado B e do empregado B confiam no funcionário C, então o empregado A confiará no funcionário C.
+Eles perguntaram aos funcionários e eles conhecem as pessoas que cada funcionário confia diretamente.
+Além disso, se empregado u m trusts do empregado B e do empregado B confiam no funcionário C, então o empregado A confiará no funcionário C.
 E obviamente, cada funcionário confia em si mesmo. Eles querem criar o menor número possível de grupos para reduzir administração geral (eles também não querem trabalhar muito).
 Com esta informação eles contactaram você e pediram que você escrevesse um programa que encontre o
 número mínimo de grupos estáveis ​​que podem ser criados.

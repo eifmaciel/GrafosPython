@@ -1,32 +1,36 @@
 # -*- coding: utf-8 -*-
 
-posnum=[]
-visit=[]
-N = 0
+visit = []
 nump = 0
-nomes = []
+posnum = []
 GL = []
 graph = []
-soma = 0
 
-
-def DFS(v, G):
-    global visit, nump, posnum, N
-    visit[v]=1
+def DFS(v):
+    global visit, nump, GL, N, graph
+    visit[v] = 1
     for i in range(N):
-        if (G[v][i] and visit[i]==0):
-            DFS(i, G)
-    nump += 1
+        if graph[v][i] and visit[i] == 0:
+            DFS(i)
+    nump+=1
     posnum[v] = nump
 
-def DFS2(v,GL):
+def DFS2(v):
+    global visit, nump, GL, N
     visit[v]=2
+    i = 0
     for i in range(N):
-       if (GL[v][i] and visit[i]==0):
-          DFS2(i, GL)
+        if GL[v][i] and visit[i] == 0:
+          DFS2(i)
+
 
 def inicializa(n):
-    global visit, posnum,GL, graph
+    global visit, posnum,GL, graph, nump
+    visit = []
+    posnum = []
+    GL = []
+    graph = []
+    nump = 0
     for i in range(n):
         posnum.append(0)
         visit.append(0)
@@ -37,21 +41,24 @@ def inicializa(n):
             GL[i].append(0)
             graph[i].append(0)
 
+
 def main():
-    import sys
     global visit, nump, posnum, N, GL, graph
     nomes = []
-
-    valor = input()
-
+    soma = 0
+    result = []
+    valor = 1
     while valor != '0 0':
+        valor = input()
+        if valor == '0 0':
+            break
         var = valor.split(' ')
         N = int(var[0])
         p = int(var[1])
         inicializa(N)
         for i in range(N):
-	        a = input()
-	        nomes.append(a)
+            a = input()
+            nomes.append(a)
         pos1 = None
         pos2 = None
         for j in range(p):
@@ -60,30 +67,28 @@ def main():
             pos1 = nomes.index(b)
             pos2 = nomes.index(c)
             graph[pos1][pos2] = 1
-        print(graph)
-        DFS(0, graph)
+        DFS(0)
         for i in range(N):
             for j in range(N):
-                GL[i][j]=graph[j][i]
+                GL[i][j] = graph[j][i]
         while (1):
-            maior=-1
-            pm=0
+            maior = -1
+            pm = 0
             for i in range(N):
-                if (posnum[i]>maior and visit[i]==1):
-                    maior=posnum[i]
-                    pm=i
-            if (maior==-1):
+                if posnum[i] > maior and visit[i] == 1:
+                    maior = posnum[i]
+                    pm = i
+            if maior == -1:
                 break
-            DFS2(pm, GL)
+            DFS2(pm)
+            soma = 0
             for i in range(N):
-                if (visit[i]==2):
-                    soma += i
-                    visit[i]=3
-        print(soma)
-        valor = input()
-        if valor == '0 0':
-            break
-
+                if visit[i] == 2:
+                    soma += 1
+                    visit[i] = 3
+        result.append(soma)
+    for i in result:
+        print(i, end=" ")
     return 0
 
 if __name__ == "__main__":
