@@ -2,9 +2,9 @@
 
 #define N 3
 
-int G[N][N]={{0,0,0},
+int G[N][N]={{0,1,0},
              {0,0,1},
-             {0,1,0}};
+             {0,0,0}};
 int GL[N][N];
 int posnum[N]={0,0,0},visit[N]={0,0,0};
 int nump=0;

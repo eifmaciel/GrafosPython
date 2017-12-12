@@ -47,31 +47,26 @@ def main():
     nomes = []
     soma = 0
     result = []
-    valor = 1
-    while valor != '0 0':
-        valor = input()
-        if valor == '0 0':
-            break
-        var = valor.split(' ')
-        N = int(var[0])
-        p = int(var[1])
+    count = 0
+    valor = int(input())
+    while valor:
+        var = input()
+        divide = var.split(' ')
+        N = int(divide[0])
+        p = int(divide[1])
         inicializa(N)
-        for i in range(N):
-            a = input()
-            nomes.append(a)
-        pos1 = None
-        pos2 = None
-        for j in range(p):
-            b = input()
-            c = input()
-            pos1 = nomes.index(b)
-            pos2 = nomes.index(c)
+        for i in range(p):
+            line = input()
+            pecas = line.split(' ')
+            pos1 = int(pecas[0])-1
+            pos2 = int(pecas[1])-1
             graph[pos1][pos2] = 1
+
         DFS(0)
         for i in range(N):
             for j in range(N):
                 GL[i][j] = graph[j][i]
-        while (1):
+        while True:
             maior = -1
             pm = 0
             for i in range(N):
@@ -85,10 +80,9 @@ def main():
             for i in range(N):
                 if visit[i] == 2:
                     soma += 1
+                    print(i)
                     visit[i] = 3
-        result.append(soma)
-    for i in result:
-        print(i, end=" ")
+        valor -= 1
     return 0
 
 if __name__ == "__main__":
