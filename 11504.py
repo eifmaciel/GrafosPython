@@ -61,8 +61,10 @@ def main():
             pos1 = int(pecas[0])-1
             pos2 = int(pecas[1])-1
             graph[pos1][pos2] = 1
+        for i in range(N):
+            if not visit[i]:
+                DFS(i)
 
-        DFS(0)
         for i in range(N):
             for j in range(N):
                 GL[i][j] = graph[j][i]
@@ -80,9 +82,12 @@ def main():
             for i in range(N):
                 if visit[i] == 2:
                     soma += 1
-                    print(i)
                     visit[i] = 3
+        result.append(soma)
         valor -= 1
+    for i in result:
+        print(i)
+    print("")
     return 0
 
 if __name__ == "__main__":
