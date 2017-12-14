@@ -27,6 +27,7 @@ ordem, uma por linha. Os caracteres em uma linha são separados por um espaço. 
 
 Sample Input
 1
+
 A B F G
 A<B B<F
 Sample Output

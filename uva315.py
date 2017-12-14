@@ -79,7 +79,7 @@ def AP(graph):
 
     for i, value in enumerate(ap):
         if value:
-            print(i)
+            print i
 
 
 # def transforma_grafo(lista):
@@ -103,15 +103,16 @@ def main():
             print a
             for v in a[1:]:
                 print graph
-                graph[k] = [v]
+                graph[k-1] = [v-1]
                 k = v
-    print graph
+        # graph[0] = []
+    # print graph
         
 
-   # graph = {0:[], 1: [5, 2], 2: [1,3], 3: [2,4], 4: [3], 5: [1]}
+    graph = {0:[], 1: [5, 2], 2: [1,3], 3: [2,4], 4: [3], 5: [1]}
     #graph = {0:[], 1: [2, 3], 2: [1,6], 3: [1], 4: [5,6], 5: [4], 6:[4,2]}
 
-    # AP(graph)
+    AP(graph)
 
 if __name__ == "__main__":
     main()

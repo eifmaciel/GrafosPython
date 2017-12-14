@@ -10,7 +10,7 @@ int g[26][26], n, has;
 char ans[26], used[26] = {};
 void dfs(int Idx) {
     if(Idx == n) {
-        printf("aqui");
+        printf("\naqui");
         has = 1;
         putchar(ans[0]);
         int i;
@@ -29,6 +29,7 @@ void dfs(int Idx) {
             if(j == Idx) {
                 ans[Idx] = s[i];
                 used[i] = 1;
+                printf("%d", &Idx);
                 dfs(Idx+1);
                 used[i] = 0;
             }
@@ -63,12 +64,6 @@ int main() {
             puts("NO");
         if(t)
             puts("");
-    }
-    for(i=0;i<n;i++){
-        for(j=0;j<n;j++){
-            printf("%d", g[i][j]);
-        }
-        printf("\n");
     }
     return 0;
 }
