@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 
+# visited = [0,0,0,0,0,0]
+# G = [[0,1, 0, 0, 0, 0],A  A<B B<C D<C D<E D<F E<A E<B E<F F<C
+# 	[0, 0, 1, 0, 0, 0],B
+# 	[0, 0, 0, 0, 0, 0],C
+# 	[0, 0, 1, 0, 1, 1],D
+# 	[1, 1, 0, 0, 0, 1],E
+# 	[0, 0, 1, 0, 0, 0]]F
+# resultado = []
+# lista= [0,0,0,0,0,0]
+
 visited = []
 G = []
 resultado = []
@@ -16,6 +26,58 @@ def printResult():
 	else:
 		print 'NO'
 
+def dfs(Idx):
+	global N, lista, lin, G, visited
+	# import ipdb; ipdb.set_trace()
+	print  'inicio', Idx, N
+	if Idx == N:
+		print  "aqui"
+		has = 1
+		print  lista[0]
+		i = 1
+		for i in range(N):
+			print  lista[i]
+		# printResult()
+		return
+	i=0
+	j=0
+	for i in range(N):
+		if not visited[i]:
+			for j in range(Idx):
+				if G[i][j]:
+					break
+			if(j == Idx):
+				lista[Idx] = lin[i]
+				visited[i] = 1
+				print  Idx+1
+				dfs(Idx+1)
+				visited[i] = 0
+
+def OrdemTopoAlt(G, graph, N):
+	global resultado
+	L = []
+	for i in range(N):
+		G[i] = 0
+
+	# import ipdb; ipdb.set_trace()
+	for i in range(N):
+		for j in range(N):
+			if graph[i][j]:
+				G[j] = G[j] + 1
+	for i in range(N):
+		if G[i] == 0:
+			L.append(i)
+
+	k = 0
+	while L:
+		v = L[0]
+		resultado.append(v)
+		L.remove(v)
+		for i in range(N):
+			if graph[v][i]:
+				G[i] = G[i] - 1
+				if G[i] == 0:
+					L.append(i)
 
 def BuscaProfOrdenTopo(v):
 	global G, visited, N, lin
@@ -69,8 +131,8 @@ def main():
 		G[pos1][pos2] = 1
 	N= tam
 
-	OrdemTopo(G)
-	# dfs(0)
+	# OrdemTopo(G)
+	dfs(0)
 	# OrdemTopoAlt(lista, G, tam)
 	# printResult()
 

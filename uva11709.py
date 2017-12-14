@@ -8,8 +8,8 @@ nomes = []
 GL = []
 graph = []
 soma = 0
-       
-        
+
+
 def DFS(v, G):
     global visit, nump, posnum, N
     visit[v]=1
@@ -39,10 +39,11 @@ def inicializa(n):
 
 def main():
     import sys
-    global visit, nump, posnum, N, nomes, GL, graph, soma
+    global visit, nump, posnum, N, GL, graph
+    nomes = []
 
     valor = input()
-   
+
     while valor != '0 0':
         var = valor.split(' ')
         N = int(var[0])
@@ -70,7 +71,7 @@ def main():
             for i in range(N):
                 if (posnum[i]>maior and visit[i]==1):
                     maior=posnum[i]
-                    pm=i   
+                    pm=i
             if (maior==-1):
                 break
             DFS2(pm, GL)
@@ -82,7 +83,7 @@ def main():
         valor = input()
         if valor == '0 0':
             break
-  
+
     return 0
 
 if __name__ == "__main__":

@@ -1,0 +1,26 @@
+Dominos são muito divertidos. As crianças gostam de colocar os azulejos do lado em longas filas. Quando um dominó
+cai, derruba o próximo, que derruba o um depois disso, todo o caminho da linha.
+No entanto, às vezes um dominó não consegue derrubar o próximo. Nesse caso, temos que derrubá-lo
+à mão para que os dominós caíssem novamente.
+Sua tarefa é determinar, dado o layout de algumas telhas de dominó, o número mínimo de dominós
+Isso deve ser derrubado à mão para que todos os dominós caíssem.
+Entrada
+A primeira linha de entrada contém um inteiro especificando o número de casos de teste a seguir. Cada teste
+o caso começa com uma linha contendo dois inteiros, cada um não maior que 100 000. O primeiro inteiro n é o
+número de telhas de dominó e o segundo inteiro m é o número de linhas a seguir no caso de teste. o
+As telhas de dominó são numeradas de 1 a n.
+Cada uma das seguintes linhas contém dois inteiros x e y indicando que se o número de dominó x cai,
+Isso fará com que o número de dominó y caia também.
+Saída
+Para cada caso de teste, forneça uma linha contendo um número inteiro, o número mínimo de dominós que deve
+ser derrubado à mão para que todos os dominós caíssem.
+Entrada de amostra
+2
+3 2
+1 2
+2 3
+3 2
+1 2
+2 3
+
+Saída de amostra
