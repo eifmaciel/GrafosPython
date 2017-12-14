@@ -68,6 +68,9 @@ def main():
         for i in range(N):
             for j in range(N):
                 GL[i][j] = graph[j][i]
+        soma = 0
+        cout = 0
+        flag = True
         while True:
             maior = -1
             pm = 0
@@ -78,12 +81,16 @@ def main():
             if maior == -1:
                 break
             DFS2(pm)
-            soma = 0
             for i in range(N):
                 if visit[i] == 2:
-                    soma += 1
+                    if i == 0:
+                        flag = True
+                    if flag:
+                        cout+=1
+                        flag = False
+                    print(i)
                     visit[i] = 3
-        result.append(soma)
+        result.append(cout)
         valor -= 1
     for i in result:
         print(i)

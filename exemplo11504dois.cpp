@@ -62,11 +62,6 @@ main() {
             }
         bool Com[nPart+1];
         memset(Com, true, nPart+1);
-        for(int i=0;i<n;i++){
-            for(int j=0;j<adj[i].size();j++){
-                printf("c%d%d =  %d\n", i, j, adj[i][j]);
-            }
-        }
         For (u, 1, n)
             for (int i=0, size=adj[u].size(); i<size; i++) {
                 int v = adj[u][i];

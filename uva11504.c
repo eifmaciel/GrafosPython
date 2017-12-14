@@ -7,17 +7,22 @@ int posnum[100], visit[100], Part[100];
 int nump=0;
 int N = 0;
 
+void Init() {
+    visit, true, n+1);
+    adj = vector< vector<int> >(n+1);
+    radj = vector< vector<int> >(n+1);
+    Count = 0;
+    Node.clear();
+}
+
 void DFS(int v){
     visit[v]=1;
-    int i;
-    for (i=0;i<N;i++){
-        int v=G[v][i];
-        if (G[v][i] && visit[i]==0){
-            DFS(v);
+    for(int i=0, i<sizeof(adj[u]); i++){
+        if (visit[adj[u][i]]) DFS(adj[u][i]);
         }
     }
     nump++;
-    posnum[v] = nump;
+    posnum[v] = v;
 }
 
 void DFS2(int v, int p) {

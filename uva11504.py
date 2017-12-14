@@ -27,16 +27,16 @@ def DFS1(u):
     global Free, Node, adj, N
     Free[u] = False
     for i in range(len(adj[u])):
-        if adj[u][i] and not Free[i]:
-            DFS1(i)
+        if not Free[adj[u][i]]:
+            DFS1(adj[u][i])
     Node.append(u)
 
 def DFS2(u, p):
     Free[u] = True
     Part[u] = p
-    for i in range(len(adj[u])):
-        if not Free[i]:
-            DFS2(i, p)
+    for i in range(len(radj[u])):
+        if not Free[radj[u][i]]:
+            DFS2(radj[u][i], p)
 
 def main():
     Case = 0
@@ -47,6 +47,8 @@ def main():
     Com = []
     var = ""
     result = []
+    import sys
+    sys.setrecursionlimit(100)
     global Free, Part, Count, adj, radj, Node, N
     while Case:
         var = input()
@@ -75,13 +77,11 @@ def main():
                 DFS2(Node[i], nPart)
                 nPart += 1
             i -= 1
-        print(adj)
         for u in range(N):
-            for i in range(N):
+            for i in range(len(adj[u])):
                 v = adj[u][i]
-
                 print("v %d" % v)
-                print("Part[u] %d Part[i] %d" %(Part[u], Part[i]))
+                print("Part[u] %d Part[v] %d\n" % Part[u], Part[v])
                 if (Part[u] != Part[i]):
                     Com[Part[v]] = False
         ans = 0
