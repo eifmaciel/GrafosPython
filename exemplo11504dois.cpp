@@ -56,17 +56,17 @@ main() {
         For (i, 1, n)
             if (Free[i]) DFS1(i);
         int nPart = 0;
-        for (int i=Node.size()-1; i>=0; i--)
+        for (int i=Node.size()-1; i>=0; i--){
             if (!Free[Node[i]]) {
                 DFS2(Node[i], ++nPart);
+
             }
+        }
         bool Com[nPart+1];
         memset(Com, true, nPart+1);
         For (u, 1, n)
             for (int i=0, size=adj[u].size(); i<size; i++) {
                 int v = adj[u][i];
-                printf("v %d\n", v);
-                printf("Part[u] %d Part[v] %d\n", Part[u], Part[v]);
                 if (Part[u]!=Part[v]) Com[Part[v]] = false;
             }
         int ans = 0;

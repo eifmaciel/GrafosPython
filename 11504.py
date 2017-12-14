@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# exmplo do professor
 visit = []
 nump = 0
 posnum = []
@@ -81,19 +82,14 @@ def main():
             if maior == -1:
                 break
             DFS2(pm)
+            print(visit)
             for i in range(N):
                 if visit[i] == 2:
-                    if i == 0:
-                        flag = True
-                    if flag:
-                        cout+=1
-                        flag = False
-                    print(i)
                     visit[i] = 3
         result.append(cout)
         valor -= 1
-    for i in result:
-        print(i)
+    # for i in result:
+    #     print(i)
     print("")
     return 0
 
