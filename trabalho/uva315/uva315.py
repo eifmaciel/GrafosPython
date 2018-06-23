@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# uva 315 - Networking
 
 mat =[]
 
@@ -18,8 +19,8 @@ def DFS(node, d, parent):
     
     depth[node] = d
     for i in range(n):
-        if(mat[node][i] == 1):
-            if(visited[i] == 0):
+        if mat[node][i]:
+            if not visited[i]:
                 visited[i] = 1
                 tmp = DFS(i, d+1, node)
                 if(tmp >= d):
@@ -27,7 +28,7 @@ def DFS(node, d, parent):
 
                 if(back > tmp):
                     back = tmp
-                son+=1
+                son += 1
             else:
                 if(i != parent):
                     if back > depth[i]:
@@ -36,7 +37,7 @@ def DFS(node, d, parent):
     lowpt[node] = back
     if(node == 0):
         if(son > 1):
-            cut +=1
+            cut += 1
     else:
         cut += flag
     return lowpt[node]
@@ -66,7 +67,7 @@ def main():
     global visited, cut, mat, n, depth, lowpt
     num = 0
     result = []
-    import sys
+
     while True:
         try:
             n = int(input())
@@ -93,4 +94,4 @@ def main():
 
 
 if __name__ == "__main__":
-     main()
+    main()

@@ -1,68 +1,70 @@
 # -*- coding: utf-8 -*-
 
+# Uva 11504 Dominos - componentes fortemente conexas
+
 n = 0
-Part = []
-Count = 0
-Free = []
+part = []
+count = 0
+visit = []
 adj = []
 radj = []
-Node = []
+node = []
 N = 0
 
 
 def Init(n):
-    global Free, Part, Count, adj, radj, Node
-    Free = []
-    Part = []
-    Count = 0
+    global visit, part, count, adj, radj, node
+    visit = []
+    part = []
+    count = 0
     adj = []
     radj = []
-    Node = []
+    node = []
     for i in range(n):
-        Free.append(True)
-        Part.append(0)
+        visit.append(True)
+        part.append(0)
         adj.append([])
         radj.append([])
 
 
 def DFS1(u):
-    global Free, Node, adj, N
-    Free[u] = False
+    global visit, node, adj, N
+    visit[u] = False
     for i in range(len(adj[u])):
-        if Free[adj[u][i]]:
+        if visit[adj[u][i]]:
             DFS1(adj[u][i])
-    Node.append(u)
+    node.append(u)
 
 
 def DFS2(u, p):
-    Free[u] = True
-    Part[u] = p
+    visit[u] = True
+    part[u] = p
     for i in range(len(radj[u])):
-        if not Free[radj[u][i]]:
+        if not visit[radj[u][i]]:
             DFS2(radj[u][i], p)
 
 
 def main():
-    Case = 0
+    case = 0
     m = 0
     u = 0
     v = 0
-    Case = int(input())
-    Com = []
+    case = int(input())
+    com = []
     var = ""
     result = []
     import sys
     sys.setrecursionlimit(1500)
-    global Free, Part, Count, adj, radj, Node, N
-    while Case:
+    global visit, part, count, adj, radj, node, N
+    while case:
         var = input()
         divide = var.split(' ')
         N = int(divide[0])
         m = int(divide[1])
         Init(N)
-        Com = []
+        com = []
         for i in range(N):
-            Com.append(True)
+            com.append(True)
         for j in reversed(range(m)):
             line = input()
             pecas = line.split(' ')
@@ -72,34 +74,33 @@ def main():
             radj[pos2-1].append(pos1-1)
 
         for i in range(N):
-            if Free[i]:
+            if visit[i]:
                 try:
                     DFS1(i)
                 except:
-                    print("")
-        nPart = 0
-        for i in reversed(range(len(Node))):
-            if not Free[Node[i]]:
+                    pass
+        npart = 0
+        for i in reversed(range(len(node))):
+            if not visit[node[i]]:
                 try:
-                    DFS2(Node[i], nPart)
-                    nPart += 1
+                    DFS2(node[i], npart)
+                    npart += 1
                 except:
-                    print("")
+                    pass
         for u in range(N):
             for i in range(len(adj[u])):
                 v = adj[u][i]
-                if (Part[u] != Part[v]):
-                    Com[Part[v]] = False
+                if (part[u] != part[v]):
+                    com[part[v]] = False
         ans = 0
         i = 0
-        for i in range(nPart):
-            if Com[i]:
+        for i in range(npart):
+            if com[i]:
                 ans += 1
         result.append(ans)
-        Case -= 1
+        case -= 1
     for i in result:
         print(i)
-    print("")
     return 0
 
 

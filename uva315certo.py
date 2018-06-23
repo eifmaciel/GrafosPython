@@ -38,6 +38,7 @@ def f_lowpt(v):
             if(nivel[i]< nivel[lowpt[v]]):
                 lowpt[v]= i
 
+
 def inicialize(N):
     global mat, nivel, lowpt, pai
     for i in range(N):
@@ -60,16 +61,16 @@ def main():
             break
         for line in iter(raw_input, '0'):
             a = map(int, line.split())
+            print a
             k = a[0]
             for v in a[1:]:
                 mat[k-1][v-1] = 1
                 k = v
-        print mat
         N = n
     DFS(0)
     f_lowpt(0)
-    print lowpt
-    print nivel
+    for i in lowpt:
+        print i
 
 if __name__ == "__main__":
     main()
